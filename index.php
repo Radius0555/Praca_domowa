@@ -15,7 +15,8 @@
 // * 1,1,2,2,3,4 -> 1,2,3,4
 // */
 
-$array = [1,1,1,2,2,3,3,2,3,4,5,5,5,6,3,3,2,1,2,4];
+$array = [1,1,1,2,2,3,3,2,3,6,4,5,5,5,6,3,3,2,1,2,4];
+//$array = [1,2,3,4,5,6,7,8,9,10,11,12];
 
 function avg(array $array): int
 {
@@ -26,8 +27,23 @@ function median(array $array): int
 {
 	sort($array);
 	$arrL = count($array);
+	$modulo = $arrL % 2;
 	$i = $arrL/2;
-	return $array[$i];
+	
+	if($modulo == 0)
+	{
+		$result = $array[--$i] + $array[++$i];
+		return $result/2;
+	}
+	else if($modulo == 1)
+	{
+		return $array[--$i];
+	}
+	else
+	{
+		$text = 'Jakiś problem!';
+		return	$text;
+	}
 }
 
 function peaks(array $array): array
